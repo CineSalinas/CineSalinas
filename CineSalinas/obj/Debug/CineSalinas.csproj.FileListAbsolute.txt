@@ -1,0 +1,5 @@
+C:\Users\Family Vargas Laínez\Desktop\Cine Salinas\CineSalinas\bin\CineSalinas.dll
+C:\Users\Family Vargas Laínez\Desktop\Cine Salinas\CineSalinas\bin\CineSalinas.pdb
+C:\Users\Family Vargas Laínez\Desktop\Cine Salinas\CineSalinas\obj\Debug\CineSalinas.dll
+C:\Users\Family Vargas Laínez\Desktop\Cine Salinas\CineSalinas\obj\Debug\CineSalinas.pdb
+C:\Users\Family Vargas Laínez\Desktop\Cine Salinas\CineSalinas\obj\Debug\CineSalinas.csprojResolveAssemblyReference.cache

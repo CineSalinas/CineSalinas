@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CineSalinasModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="CineSalinasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cartelera" EntityType="CineSalinasModel.cartelera" />
+    <EntitySet Name="categorias" EntityType="CineSalinasModel.categorias" />
+    <EntitySet Name="cines" EntityType="CineSalinasModel.cines" />
+    <EntitySet Name="comunas" EntityType="CineSalinasModel.comunas" />
+    <EntitySet Name="entrada" EntityType="CineSalinasModel.entrada" />
+    <EntitySet Name="formatoPeliculas" EntityType="CineSalinasModel.formatoPeliculas" />
+    <EntitySet Name="funcion" EntityType="CineSalinasModel.funcion" />
+    <EntitySet Name="peliculas" EntityType="CineSalinasModel.peliculas" />
+    <EntitySet Name="salas" EntityType="CineSalinasModel.salas" />
+    <EntitySet Name="tipoAsientos" EntityType="CineSalinasModel.tipoAsientos" />
+    <EntitySet Name="usuarios" EntityType="CineSalinasModel.usuarios" />
+    <AssociationSet Name="FK__cartelera__idCat__1CF15040" Association="CineSalinasModel.FK__cartelera__idCat__1CF15040">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="cartelera" EntitySet="cartelera" />
+    </AssociationSet>
+    <AssociationSet Name="FK__peliculas__idCar__21B6055D" Association="CineSalinasModel.FK__peliculas__idCar__21B6055D">
+      <End Role="cartelera" EntitySet="cartelera" />
+      <End Role="peliculas" EntitySet="peliculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cines__idComuna__145C0A3F" Association="CineSalinasModel.FK__cines__idComuna__145C0A3F">
+      <End Role="comunas" EntitySet="comunas" />
+      <End Role="cines" EntitySet="cines" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idCine__286302EC" Association="CineSalinasModel.FK__funcion__idCine__286302EC">
+      <End Role="cines" EntitySet="cines" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entrada__idFunci__2C3393D0" Association="CineSalinasModel.FK__entrada__idFunci__2C3393D0">
+      <End Role="funcion" EntitySet="funcion" />
+      <End Role="entrada" EntitySet="entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entrada__usuario__2B3F6F97" Association="CineSalinasModel.FK__entrada__usuario__2B3F6F97">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="entrada" EntitySet="entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK__peliculas__idFor__22AA2996" Association="CineSalinasModel.FK__peliculas__idFor__22AA2996">
+      <End Role="formatoPeliculas" EntitySet="formatoPeliculas" />
+      <End Role="peliculas" EntitySet="peliculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idPelic__276EDEB3" Association="CineSalinasModel.FK__funcion__idPelic__276EDEB3">
+      <End Role="peliculas" EntitySet="peliculas" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idSala__25869641" Association="CineSalinasModel.FK__funcion__idSala__25869641">
+      <End Role="salas" EntitySet="salas" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idTipoA__267ABA7A" Association="CineSalinasModel.FK__funcion__idTipoA__267ABA7A">
+      <End Role="tipoAsientos" EntitySet="tipoAsientos" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="cartelera">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="sinopsis" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="director" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="reparto" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="idCategoria" Type="Int32" Nullable="false" />
+    <Property Name="imagen" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="video" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="categorias" Relationship="CineSalinasModel.FK__cartelera__idCat__1CF15040" FromRole="cartelera" ToRole="categorias" />
+    <NavigationProperty Name="peliculas" Relationship="CineSalinasModel.FK__peliculas__idCar__21B6055D" FromRole="cartelera" ToRole="peliculas" />
+  </EntityType>
+  <EntityType Name="categorias">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoria" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="cartelera" Relationship="CineSalinasModel.FK__cartelera__idCat__1CF15040" FromRole="categorias" ToRole="cartelera" />
+  </EntityType>
+  <EntityType Name="cines">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="ubicación" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="idComuna" Type="Int32" Nullable="false" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="comunas" Relationship="CineSalinasModel.FK__cines__idComuna__145C0A3F" FromRole="cines" ToRole="comunas" />
+    <NavigationProperty Name="funcion" Relationship="CineSalinasModel.FK__funcion__idCine__286302EC" FromRole="cines" ToRole="funcion" />
+    <Property Type="String" Name="mapa" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="comunas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comuna" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="cines" Relationship="CineSalinasModel.FK__cines__idComuna__145C0A3F" FromRole="comunas" ToRole="cines" />
+  </EntityType>
+  <EntityType Name="entrada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuario" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="idFuncion" Type="Int32" />
+    <NavigationProperty Name="funcion" Relationship="CineSalinasModel.FK__entrada__idFunci__2C3393D0" FromRole="entrada" ToRole="funcion" />
+    <NavigationProperty Name="usuarios" Relationship="CineSalinasModel.FK__entrada__usuario__2B3F6F97" FromRole="entrada" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="formatoPeliculas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="formato" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="precio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="peliculas" Relationship="CineSalinasModel.FK__peliculas__idFor__22AA2996" FromRole="formatoPeliculas" ToRole="peliculas" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="imagen" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="funcion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idSala" Type="Int32" Nullable="false" />
+    <Property Name="idTipoAsiento" Type="Int32" Nullable="false" />
+    <Property Name="numeroAsiento" Type="Int32" Nullable="false" />
+    <Property Name="idPelicula" Type="Int32" Nullable="false" />
+    <Property Name="idCine" Type="Int32" />
+    <Property Name="hora" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="fecha" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="precio" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cines" Relationship="CineSalinasModel.FK__funcion__idCine__286302EC" FromRole="funcion" ToRole="cines" />
+    <NavigationProperty Name="entrada" Relationship="CineSalinasModel.FK__entrada__idFunci__2C3393D0" FromRole="funcion" ToRole="entrada" />
+    <NavigationProperty Name="peliculas" Relationship="CineSalinasModel.FK__funcion__idPelic__276EDEB3" FromRole="funcion" ToRole="peliculas" />
+    <NavigationProperty Name="salas" Relationship="CineSalinasModel.FK__funcion__idSala__25869641" FromRole="funcion" ToRole="salas" />
+    <NavigationProperty Name="tipoAsientos" Relationship="CineSalinasModel.FK__funcion__idTipoA__267ABA7A" FromRole="funcion" ToRole="tipoAsientos" />
+  </EntityType>
+  <EntityType Name="peliculas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCartelera" Type="Int32" Nullable="false" />
+    <Property Name="idFormato" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cartelera" Relationship="CineSalinasModel.FK__peliculas__idCar__21B6055D" FromRole="peliculas" ToRole="cartelera" />
+    <NavigationProperty Name="formatoPeliculas" Relationship="CineSalinasModel.FK__peliculas__idFor__22AA2996" FromRole="peliculas" ToRole="formatoPeliculas" />
+    <NavigationProperty Name="funcion" Relationship="CineSalinasModel.FK__funcion__idPelic__276EDEB3" FromRole="peliculas" ToRole="funcion" />
+  </EntityType>
+  <EntityType Name="salas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <Property Name="cantidadAsientos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="funcion" Relationship="CineSalinasModel.FK__funcion__idSala__25869641" FromRole="salas" ToRole="funcion" />
+  </EntityType>
+  <EntityType Name="tipoAsientos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="precio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="funcion" Relationship="CineSalinasModel.FK__funcion__idTipoA__267ABA7A" FromRole="tipoAsientos" ToRole="funcion" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="imagen" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="correo" />
+    </Key>
+    <Property Name="correo" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="clave" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="apellido" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="entrada" Relationship="CineSalinasModel.FK__entrada__usuario__2B3F6F97" FromRole="usuarios" ToRole="entrada" />
+  </EntityType>
+  <Association Name="FK__cartelera__idCat__1CF15040">
+    <End Role="categorias" Type="CineSalinasModel.categorias" Multiplicity="1" />
+    <End Role="cartelera" Type="CineSalinasModel.cartelera" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cartelera">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__peliculas__idCar__21B6055D">
+    <End Role="cartelera" Type="CineSalinasModel.cartelera" Multiplicity="1" />
+    <End Role="peliculas" Type="CineSalinasModel.peliculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cartelera">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="peliculas">
+        <PropertyRef Name="idCartelera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cines__idComuna__145C0A3F">
+    <End Role="comunas" Type="CineSalinasModel.comunas" Multiplicity="1" />
+    <End Role="cines" Type="CineSalinasModel.cines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comunas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cines">
+        <PropertyRef Name="idComuna" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idCine__286302EC">
+    <End Role="cines" Type="CineSalinasModel.cines" Multiplicity="0..1" />
+    <End Role="funcion" Type="CineSalinasModel.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idCine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entrada__idFunci__2C3393D0">
+    <End Role="funcion" Type="CineSalinasModel.funcion" Multiplicity="0..1" />
+    <End Role="entrada" Type="CineSalinasModel.entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="entrada">
+        <PropertyRef Name="idFuncion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entrada__usuario__2B3F6F97">
+    <End Role="usuarios" Type="CineSalinasModel.usuarios" Multiplicity="0..1" />
+    <End Role="entrada" Type="CineSalinasModel.entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="correo" />
+      </Principal>
+      <Dependent Role="entrada">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__peliculas__idFor__22AA2996">
+    <End Role="formatoPeliculas" Type="CineSalinasModel.formatoPeliculas" Multiplicity="1" />
+    <End Role="peliculas" Type="CineSalinasModel.peliculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formatoPeliculas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="peliculas">
+        <PropertyRef Name="idFormato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idPelic__276EDEB3">
+    <End Role="peliculas" Type="CineSalinasModel.peliculas" Multiplicity="1" />
+    <End Role="funcion" Type="CineSalinasModel.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peliculas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idPelicula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idSala__25869641">
+    <End Role="salas" Type="CineSalinasModel.salas" Multiplicity="1" />
+    <End Role="funcion" Type="CineSalinasModel.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="salas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idSala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idTipoA__267ABA7A">
+    <End Role="tipoAsientos" Type="CineSalinasModel.tipoAsientos" Multiplicity="1" />
+    <End Role="funcion" Type="CineSalinasModel.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoAsientos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idTipoAsiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CineSalinasModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="CineSalinasModelStoreContainer">
+    <EntitySet Name="cartelera" EntityType="CineSalinasModel.Store.cartelera" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="categorias" EntityType="CineSalinasModel.Store.categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="cines" EntityType="CineSalinasModel.Store.cines" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="comunas" EntityType="CineSalinasModel.Store.comunas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="entrada" EntityType="CineSalinasModel.Store.entrada" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="formatoPeliculas" EntityType="CineSalinasModel.Store.formatoPeliculas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="funcion" EntityType="CineSalinasModel.Store.funcion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="peliculas" EntityType="CineSalinasModel.Store.peliculas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="salas" EntityType="CineSalinasModel.Store.salas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tipoAsientos" EntityType="CineSalinasModel.Store.tipoAsientos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="usuarios" EntityType="CineSalinasModel.Store.usuarios" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__cartelera__idCat__1CF15040" Association="CineSalinasModel.Store.FK__cartelera__idCat__1CF15040">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="cartelera" EntitySet="cartelera" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cines__idComuna__145C0A3F" Association="CineSalinasModel.Store.FK__cines__idComuna__145C0A3F">
+      <End Role="comunas" EntitySet="comunas" />
+      <End Role="cines" EntitySet="cines" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entrada__idFunci__2C3393D0" Association="CineSalinasModel.Store.FK__entrada__idFunci__2C3393D0">
+      <End Role="funcion" EntitySet="funcion" />
+      <End Role="entrada" EntitySet="entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK__entrada__usuario__2B3F6F97" Association="CineSalinasModel.Store.FK__entrada__usuario__2B3F6F97">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="entrada" EntitySet="entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idCine__286302EC" Association="CineSalinasModel.Store.FK__funcion__idCine__286302EC">
+      <End Role="cines" EntitySet="cines" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idPelic__276EDEB3" Association="CineSalinasModel.Store.FK__funcion__idPelic__276EDEB3">
+      <End Role="peliculas" EntitySet="peliculas" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idSala__25869641" Association="CineSalinasModel.Store.FK__funcion__idSala__25869641">
+      <End Role="salas" EntitySet="salas" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__funcion__idTipoA__267ABA7A" Association="CineSalinasModel.Store.FK__funcion__idTipoA__267ABA7A">
+      <End Role="tipoAsientos" EntitySet="tipoAsientos" />
+      <End Role="funcion" EntitySet="funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__peliculas__idCar__21B6055D" Association="CineSalinasModel.Store.FK__peliculas__idCar__21B6055D">
+      <End Role="cartelera" EntitySet="cartelera" />
+      <End Role="peliculas" EntitySet="peliculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__peliculas__idFor__22AA2996" Association="CineSalinasModel.Store.FK__peliculas__idFor__22AA2996">
+      <End Role="formatoPeliculas" EntitySet="formatoPeliculas" />
+      <End Role="peliculas" EntitySet="peliculas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="cartelera">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="sinopsis" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="director" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="reparto" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="idCategoria" Type="int" Nullable="false" />
+    <Property Name="imagen" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="video" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="estado" Type="varchar" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="categorias">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="categoria" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="cines">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="ubicación" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="idComuna" Type="int" Nullable="false" />
+    <Property Name="numero" Type="int" Nullable="false" />
+    <Property Name="mapa" Type="varchar" Nullable="false" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="comunas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="comuna" Type="varchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="entrada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="usuario" Type="varchar" MaxLength="30" />
+    <Property Name="idFuncion" Type="int" />
+  </EntityType>
+  <EntityType Name="formatoPeliculas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="formato" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="imagen" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="precio" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="funcion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idSala" Type="int" Nullable="false" />
+    <Property Name="idTipoAsiento" Type="int" Nullable="false" />
+    <Property Name="numeroAsiento" Type="int" Nullable="false" />
+    <Property Name="idPelicula" Type="int" Nullable="false" />
+    <Property Name="idCine" Type="int" />
+    <Property Name="hora" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="fecha" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="precio" Type="int" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="peliculas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idCartelera" Type="int" Nullable="false" />
+    <Property Name="idFormato" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="salas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="int" Nullable="false" />
+    <Property Name="cantidadAsientos" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tipoAsientos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="imagen" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="precio" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="correo" />
+    </Key>
+    <Property Name="correo" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="clave" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="apellido" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="tipo" Type="varchar" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <Association Name="FK__cartelera__idCat__1CF15040">
+    <End Role="categorias" Type="CineSalinasModel.Store.categorias" Multiplicity="1" />
+    <End Role="cartelera" Type="CineSalinasModel.Store.cartelera" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cartelera">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cines__idComuna__145C0A3F">
+    <End Role="comunas" Type="CineSalinasModel.Store.comunas" Multiplicity="1" />
+    <End Role="cines" Type="CineSalinasModel.Store.cines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comunas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cines">
+        <PropertyRef Name="idComuna" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entrada__idFunci__2C3393D0">
+    <End Role="funcion" Type="CineSalinasModel.Store.funcion" Multiplicity="0..1" />
+    <End Role="entrada" Type="CineSalinasModel.Store.entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="entrada">
+        <PropertyRef Name="idFuncion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__entrada__usuario__2B3F6F97">
+    <End Role="usuarios" Type="CineSalinasModel.Store.usuarios" Multiplicity="0..1" />
+    <End Role="entrada" Type="CineSalinasModel.Store.entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="correo" />
+      </Principal>
+      <Dependent Role="entrada">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idCine__286302EC">
+    <End Role="cines" Type="CineSalinasModel.Store.cines" Multiplicity="0..1" />
+    <End Role="funcion" Type="CineSalinasModel.Store.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idCine" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idPelic__276EDEB3">
+    <End Role="peliculas" Type="CineSalinasModel.Store.peliculas" Multiplicity="1" />
+    <End Role="funcion" Type="CineSalinasModel.Store.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peliculas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idPelicula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idSala__25869641">
+    <End Role="salas" Type="CineSalinasModel.Store.salas" Multiplicity="1" />
+    <End Role="funcion" Type="CineSalinasModel.Store.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="salas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idSala" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__funcion__idTipoA__267ABA7A">
+    <End Role="tipoAsientos" Type="CineSalinasModel.Store.tipoAsientos" Multiplicity="1" />
+    <End Role="funcion" Type="CineSalinasModel.Store.funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoAsientos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcion">
+        <PropertyRef Name="idTipoAsiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__peliculas__idCar__21B6055D">
+    <End Role="cartelera" Type="CineSalinasModel.Store.cartelera" Multiplicity="1" />
+    <End Role="peliculas" Type="CineSalinasModel.Store.peliculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cartelera">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="peliculas">
+        <PropertyRef Name="idCartelera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__peliculas__idFor__22AA2996">
+    <End Role="formatoPeliculas" Type="CineSalinasModel.Store.formatoPeliculas" Multiplicity="1" />
+    <End Role="peliculas" Type="CineSalinasModel.Store.peliculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formatoPeliculas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="peliculas">
+        <PropertyRef Name="idFormato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
